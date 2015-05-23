@@ -55,7 +55,8 @@ class Curl extends BaseTransport
             CURLOPT_POST => false,
             CURLOPT_POSTFIELDS => null,
             CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
-            CURLOPT_TIMEOUT => 10,
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_TIMEOUT => 60,
         );
 
         if ($this->username && $this->password) {
@@ -89,7 +90,7 @@ class Curl extends BaseTransport
         $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
         if ($response === false) {
-            throw new Exception("Can't open connection to " . $url);
+            throw new Exception("Can't open connection to " . $url . ': ' . curl_error($ch));
         }
 
         if (!$code) {
