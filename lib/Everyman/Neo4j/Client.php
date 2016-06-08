@@ -338,7 +338,7 @@ class Client
 		}
 
 		try {
-			$result = $this->loadNode($node);
+			$this->loadNode($node);
 		} catch (Exception $e) {
 			if ($e->getCode() == self::ErrorNotFound) {
 				return null;
@@ -430,7 +430,7 @@ class Client
 
 
 		try {
-			$result = $this->loadRelationship($rel);
+			$this->loadRelationship($rel);
 		} catch (Exception $e) {
 			if ($e->getCode() == self::ErrorNotFound) {
 				return null;
